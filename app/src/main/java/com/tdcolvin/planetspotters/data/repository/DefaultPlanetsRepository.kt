@@ -2,12 +2,14 @@ package com.tdcolvin.planetspotters.data.repository
 
 import com.tdcolvin.planetspotters.data.source.LocalDataSource
 import com.tdcolvin.planetspotters.data.source.RemoteDataSource
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class DefaultPlanetsRepository @Inject constructor(
     private val localDataSource: LocalDataSource,
     private val remoteDataSource: RemoteDataSource,
+    private val ioCoroutineDispatcher: CoroutineDispatcher
 ): PlanetsRepository {
     override fun getPlanetsFlow(): Flow<WorkResult<List<Planet>>> {
         return localDataSource.getPlanetsFlow()
