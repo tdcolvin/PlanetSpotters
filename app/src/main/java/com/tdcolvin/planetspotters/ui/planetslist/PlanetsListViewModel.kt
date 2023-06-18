@@ -5,9 +5,11 @@ import androidx.lifecycle.viewModelScope
 import com.tdcolvin.planetspotters.data.repository.Planet
 import com.tdcolvin.planetspotters.data.repository.PlanetsRepository
 import com.tdcolvin.planetspotters.data.repository.WorkResult
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 data class PlanetsListUiState(
@@ -16,8 +18,9 @@ data class PlanetsListUiState(
     val isError: Boolean = false
 )
 
+@HiltViewModel
 class PlanetsListViewModel @Inject constructor(
-    planetsRepository: PlanetsRepository
+    private val planetsRepository: PlanetsRepository
 ): ViewModel() {
     private val planets = planetsRepository.getPlanetsFlow()
 
