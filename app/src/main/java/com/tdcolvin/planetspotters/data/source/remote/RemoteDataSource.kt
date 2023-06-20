@@ -1,4 +1,4 @@
-package com.tdcolvin.planetspotters.data.source
+package com.tdcolvin.planetspotters.data.source.remote
 
 import com.tdcolvin.planetspotters.data.repository.Planet
 

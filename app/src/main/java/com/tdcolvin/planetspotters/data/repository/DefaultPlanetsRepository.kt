@@ -1,7 +1,7 @@
 package com.tdcolvin.planetspotters.data.repository
 
-import com.tdcolvin.planetspotters.data.source.LocalDataSource
-import com.tdcolvin.planetspotters.data.source.RemoteDataSource
+import com.tdcolvin.planetspotters.data.source.local.LocalDataSource
+import com.tdcolvin.planetspotters.data.source.remote.RemoteDataSource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
