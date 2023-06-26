@@ -13,6 +13,18 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
+object UseCaseModule {
+    @Singleton
+    @Provides
+    fun provideAddPlanetUseCase(
+        repository: PlanetsRepository
+    ): AddPlanetUseCase {
+        return AddPlanetUseCase(repository)
+    }
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
 object RepositoryModule {
 
     @Singleton
