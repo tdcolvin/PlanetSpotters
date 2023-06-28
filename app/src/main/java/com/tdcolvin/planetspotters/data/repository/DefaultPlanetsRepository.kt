@@ -15,6 +15,10 @@ class DefaultPlanetsRepository @Inject constructor(
         return localDataSource.getPlanetsFlow()
     }
 
+    override fun getPlanetFlow(planetId: String): Flow<WorkResult<Planet?>> {
+        return localDataSource.getPlanetFlow(planetId)
+    }
+
     override suspend fun refreshPlanets() {
         val planets = remoteDataSource.getPlanets()
         localDataSource.setPlanets(planets)
