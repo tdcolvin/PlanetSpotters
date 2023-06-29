@@ -4,6 +4,7 @@ package com.tdcolvin.planetspotters.ui.addeditplanet
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.tdcolvin.planetspotters.R
 import com.tdcolvin.planetspotters.data.repository.Planet
 import com.tdcolvin.planetspotters.data.repository.PlanetsRepository
 import com.tdcolvin.planetspotters.data.repository.WorkResult
@@ -24,7 +25,9 @@ data class AddEditPlanetUiState(
     val planetDistanceLy: Float = 1.0F,
     val planetDiscovered: Date = Date(),
     val isLoading: Boolean = false,
-    val isPlanetSaved: Boolean = false
+    val isPlanetSaved: Boolean = false,
+    val isPlanetSaving: Boolean = false,
+    val planetSavingError: Int? = null
 )
 
 @HiltViewModel
@@ -46,15 +49,24 @@ class AddEditPlanetViewModel @Inject constructor(
 
     fun savePlanet() {
         viewModelScope.launch {
-            addPlanetUseCase(
-                Planet(
-                    planetId = planetId,
-                    name = _uiState.value.planetName,
-                    distanceLy = uiState.value.planetDistanceLy,
-                    discovered = uiState.value.planetDiscovered
+            try {
+                _uiState.update { it.copy(isPlanetSaving = true) }
+                addPlanetUseCase(
+                    Planet(
+                        planetId = planetId,
+                        name = _uiState.value.planetName,
+                        distanceLy = uiState.value.planetDistanceLy,
+                        discovered = uiState.value.planetDiscovered
+                    )
                 )
-            )
-            _uiState.update { it.copy(isPlanetSaved = true) }
+                _uiState.update { it.copy(isPlanetSaved = true) }
+            }
+            catch (e: Exception) {
+                _uiState.update { it.copy(planetSavingError = R.string.error_saving_planet) }
+            }
+            finally {
+                _uiState.update { it.copy(isPlanetSaving = false) }
+            }
         }
     }
 

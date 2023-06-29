@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">PlanetSpotters</string>
+    <string name="add_planet">Add Planet</string>
+    <string name="edit_planet">Edit Planet</string>
+    <string name="no_planets_label">No planets discovered yet</string>
+    <string name="planet_image_content_description">Photo of an alien planet</string>
+    <string name="name_hint">Title</string>
+    <string name="save_planet_description">Save Planet</string>
+    <string name="distance_description">Enter distance (light years)</string>
+    <string name="distance_label">Distance from your home planet (light years)</string>
+    <string name="plane_name_label">Name your planet</string>
+    <string name="reachable_description">Reachable with a lightspeed engine</string>
+    <string name="reachable_but_far_description">Reachable at lightspeed, but you\'ll be a lot older</string>
+    <string name="not_reachable_description">Beyond the reach of your lifespan</string>
+    <string name="error_loading_planets">An error occurred loading your planets</string>
+    <string name="error_saving_planet">Unable to save your planet, please check you have entered all required details</string>
 </resources>
