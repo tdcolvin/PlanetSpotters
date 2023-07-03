@@ -32,6 +32,14 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.6"
+    }
 }
 
 dependencies {
@@ -49,6 +57,38 @@ dependencies {
 
     implementation "com.google.dagger:hilt-android:2.44.2"
     kapt "com.google.dagger:hilt-compiler:2.44.2"
+
+    //Room
+    implementation "androidx.room:room-runtime:2.5.1"
+    kapt "androidx.room:room-compiler:2.5.1"
+    implementation "androidx.room:room-ktx:2.5.1"
+
+    def composeBom = platform('androidx.compose:compose-bom:2023.04.01')
+    implementation composeBom
+    androidTestImplementation composeBom
+
+    //COMPOSE
+    // Material Design 2
+    implementation 'androidx.compose.material:material'
+
+    // Android Studio Preview support
+    implementation 'androidx.compose.ui:ui-tooling-preview'
+    debugImplementation 'androidx.compose.ui:ui-tooling'
+
+    // UI Tests
+    androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
+    debugImplementation 'androidx.compose.ui:ui-test-manifest'
+
+    // Optional - Integration with ViewModels
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1'
+
+    //collectAsStateWithLifecycle()
+    implementation "androidx.lifecycle:lifecycle-runtime-compose:2.6.1"
+
+    //COMPOSE NAVIGATION
+    implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
+    implementation "androidx.navigation:navigation-compose:2.6.0"
+    implementation 'androidx.navigation:navigation-runtime-ktx:2.6.0'
 }
 
 // Allow references to generated code
